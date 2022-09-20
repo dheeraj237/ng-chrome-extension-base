@@ -1,0 +1,13 @@
+{
+    "name": "NG Extention",
+    "version": "1.0",
+    "description": "Extension with Angular",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": {
+            "19": "src/favicon.ico",
+            "38": "src/favicon.ico"
+        }
+    }
+  }
