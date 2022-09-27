@@ -1,7 +1,7 @@
 {
-    "name": "NG Extention",
+    "name": "NG Extention Starter",
     "version": "1.0",
-    "description": "Extension with Angular",
+    "description": "Extension with Angular Starter Pack",
     "manifest_version": 3,
     "action": {
         "default_popup": "index.html",
