@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'browser-notes-extension';
+  title = 'ng-chrome-extension-starter';
 }

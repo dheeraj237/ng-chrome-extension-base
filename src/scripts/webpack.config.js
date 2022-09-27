@@ -1,9 +1,9 @@
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { join } = require('path');
-const { optimize } = require('webpack');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
+  devtool: 'inline-source-map',
   entry: {
     contentPage: join(__dirname, 'contentPage.ts'),
     serviceWorker: join(__dirname, 'serviceWorker.ts')
@@ -18,10 +18,10 @@ module.exports = {
     ],
   },
   output: {
-    path: join(__dirname, '../../dist'),
+    path: join(__dirname, '../../dist/ng-chrome-extension-starter'),
     filename: '[name].js'
   },
-  plugins: [new CheckerPlugin(), new optimize.AggressiveMergingPlugin()],
+  plugins: [new CheckerPlugin()],
   resolve: {
     extensions: ['.ts', '.js']
   }

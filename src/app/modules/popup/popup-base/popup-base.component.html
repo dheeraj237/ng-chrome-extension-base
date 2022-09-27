@@ -1,0 +1,39 @@
+<header>
+    <div class="container-fluid">
+        <span class="navbar-brand">
+            <h1>NG Chrome Extension Starter</h1>
+            <!-- (tabId=<strong>{{ tabId }}</strong>) -->
+        </span>
+    </div>
+</header>
+
+<section *ngIf="authorized$ | async; else notAuthorized">
+    <div class="container-fluid text-center">
+        <div class="row my-3 text-center">
+            <div class="col">
+                <div class="form-check form-switch">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Enable rating feature: </label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                </div>
+            </div>
+        </div>
+        <div class="row my-3 text-center pt-2">
+            Main content space
+        </div>
+    </div>
+
+    <!-- pop content -->
+</section>
+
+<ng-template #notAuthorized>
+    <section class="not-authorized">
+        <p>
+            :(
+        </p>
+        <p>Oops! You are not authorized to change the border color of this page.</p>
+    </section>
+</ng-template>
+
+<footer>
+    <button class="btn btn-sm btn-outline-primary float-right" (click)="openOptionsPage()">Options ⚙️</button>
+</footer>

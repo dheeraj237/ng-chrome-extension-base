@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "browser-notes-extension": {
+    "ng-chrome-extension-starter": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -15,83 +15,86 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "optimization": {
-            "styles": {
-              "inlineCritical": false
-            }
-          },
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/browser-notes-extension",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.json",
-              "src/scripts/contentPage.ts",
-              "src/scripts/serviceWorker.ts"
-            ],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "fonts": false
-              },
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
+					"optimization": {
+						"styles": {
+							"inlineCritical": false
+						}
+					},
+					"builder": "@angular-builders/custom-webpack:browser",
+					"options": {
+						"outputPath": "dist/ng-chrome-extension-starter",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"src/favicon.ico",
+							"src/assets",
+							"src/manifest.json",
+							"src/scripts/background_runtime.js",
+							"src/scripts/serviceWorker.ts",
+							"src/scripts/contentPage.ts"
+						],
+						"customWebpackConfig": {
+							"path": "./custom-webpack.config.ts"
+						},
+						"styles": [
+							"node_modules/bootstrap/scss/bootstrap.scss",
+							"node_modules/bootstrap-icons/font/bootstrap-icons.css",
+							"src/styles.scss"
+						],
+						"scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+					},
+					"configurations": {
+						"production": {
+							"optimization": {
+								"scripts": true,
+								"styles": {
+									"minify": true,
+									"inlineCritical": false
+								},
+								"fonts": false
+							},
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "browser-notes-extension:build:production"
+              "browserTarget": "ng-chrome-extension-starter:build:production"
             },
             "development": {
-              "browserTarget": "browser-notes-extension:build:development"
+              "browserTarget": "ng-chrome-extension-starter:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -99,7 +102,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "browser-notes-extension:build"
+            "browserTarget": "ng-chrome-extension-starter:build"
           }
         },
         "test": {

@@ -1,13 +1,28 @@
 {
-    "name": "NG Extention Starter",
-    "version": "1.0",
-    "description": "Extension with Angular Starter Pack",
-    "manifest_version": 3,
-    "action": {
-        "default_popup": "index.html",
-        "default_icon": {
-            "19": "src/favicon.ico",
-            "38": "src/favicon.ico"
-        }
-    }
-  }
+	"name": "NG Extention Starter",
+	"version": "1.0",
+	"description": "Extension with Angular Starter Pack",
+	"manifest_version": 3,
+	"host_permissions": ["*://*/"],
+	"permissions": ["storage", "activeTab", "scripting", "tabs"],
+	"action": {
+		"default_popup": "index.html?#/popup",
+		"default_title": "NG Extention Starter"
+	},
+	"options_page": "index.html?#/options",
+	"chrome_url_overrides": {
+		"newtab": "index.html?#/tab"
+	},
+	"background": {
+		"service_worker": "serviceWorker.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://*/*"],
+			"js": ["contentPage.js"]
+		}
+	],
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; object-src 'self'"
+	}
+}
